@@ -1,0 +1,30 @@
+###
+
+GET http://localhost:8080/handytools
+
+###
+
+GET http://localhost:8080/handytools/1
+
+###
+POST http://localhost:8080/handytools
+Content-Type: application/json
+
+{
+    "toolDetail": "drill",
+    "ownerName": "kt",
+    "locationName": "hanging at the barn's wall",
+    "borrowed": false,
+    "borrowedName": null
+}
+
+###
+DELETE http://localhost:8080/handytools/2
+
+### 
+PUT http://localhost:8080/handytools/1 
+Content-Type: application/json
+
+{
+"toolDetail": "new tool name for #1", "ownerName": "kt", "locationName": "in the box under the desk", "borrowed": false, "borrowedName": null
+}

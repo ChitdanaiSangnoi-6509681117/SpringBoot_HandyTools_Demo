@@ -1,13 +1,13 @@
-package com.tu.assignment1;
+package com.dev.chitdanai.handytools;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class Assignment1Application {
+public class HandytoolsApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(Assignment1Application.class, args);
+		SpringApplication.run(HandytoolsApplication.class, args);
 	}
 
 }
