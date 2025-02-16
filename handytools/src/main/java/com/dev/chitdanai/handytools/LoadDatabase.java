@@ -14,9 +14,9 @@ public class LoadDatabase {
     @Bean
     CommandLineRunner setupData(StorageRepository repository){
         return args -> {
-            log.info("loading "+repository.save(new Storage("hammer", "kt", "outside storage", false, null)));
-            log.info("loading "+repository.save(new Storage("screwdriver", "kt", "toolbox 2nd floor", false, null)));
-            log.info("loading"+repository.save(new Storage("paint brush","kt","paint cabinet",false,null)));
+            log.info("loading "+repository.save(new Storage("Camera", "Chitdanai", "Closet", true, "Mother")));
+            log.info("loading "+repository.save(new Storage("Atomic Bomb", "Oppenheimer", "Basement", false, null)));
+            log.info("loading"+repository.save(new Storage("Kryptonite","Clark","Fortress",true,"Batman")));
         };
     }
 

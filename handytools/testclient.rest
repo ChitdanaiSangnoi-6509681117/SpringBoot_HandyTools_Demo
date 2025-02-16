@@ -1,30 +1,114 @@
-###
+### Success Cases ###
 
+### List all tools
 GET http://localhost:8080/handytools
 
-###
-
-GET http://localhost:8080/handytools/1
-
-###
+### Create new tool successfully
 POST http://localhost:8080/handytools
 Content-Type: application/json
 
 {
-    "toolDetail": "drill",
-    "ownerName": "kt",
-    "locationName": "hanging at the barn's wall",
+    "toolDetail": "Hammer",
+    "ownerName": "Thor",
+    "locationName": "Tool Shed",
     "borrowed": false,
-    "borrowedName": null
+    "borrowerName": null
 }
 
-###
-DELETE http://localhost:8080/handytools/2
+### Get specific tool successfully
+GET http://localhost:8080/handytools/1
 
-### 
-PUT http://localhost:8080/handytools/1 
+### Update tool - mark as borrowed successfully
+PUT http://localhost:8080/handytools/2
 Content-Type: application/json
 
 {
-"toolDetail": "new tool name for #1", "ownerName": "kt", "locationName": "in the box under the desk", "borrowed": false, "borrowedName": null
+    "toolDetail": "Atomic Bomb",
+    "ownerName": "Oppenheimer",
+    "locationName": "Basement",
+    "borrowed": true,
+    "borrowerName": "US Government"
 }
+
+### Update tool - return tool successfully
+PUT http://localhost:8080/handytools/2
+Content-Type: application/json
+
+{
+    "toolDetail": "Atomic Bomb",
+    "ownerName": "Oppenheimer",
+    "locationName": "Basement",
+    "borrowed": false,
+    "borrowerName": null
+}
+
+### Delete tool successfully
+DELETE http://localhost:8080/handytools/3
+
+### Error Cases ###
+
+### Get non-existent tool
+GET http://localhost:8080/handytools/999
+
+### Create tool with invalid state (borrowed=true without borrower)
+POST http://localhost:8080/handytools
+Content-Type: application/json
+
+{
+    "toolDetail": "Blade",
+    "ownerName": "Tanjirou",
+    "locationName": "Garage",
+    "borrowed": true,
+    "borrowerName": null
+}
+
+### Create tool with invalid state (borrowed=false with borrower)
+POST http://localhost:8080/handytools
+Content-Type: application/json
+
+{
+    "toolDetail": "Omnitrix",
+    "ownerName": "Benjamin",
+    "locationName": "Basement",
+    "borrowed": false,
+    "borrowerName": "Alice"
+}
+
+### Update non-existent tool
+PUT http://localhost:8080/handytools/999
+Content-Type: application/json
+
+{
+    "toolDetail": "Wallet",
+    "ownerName": "Chitdanai",
+    "locationName": "Garage",
+    "borrowed": false,
+    "borrowerName": null
+}
+
+### Try to borrow already borrowed tool
+PUT http://localhost:8080/handytools/1
+Content-Type: application/json
+
+{
+    "toolDetail": "Camera",
+    "ownerName": "Chitdanai",
+    "locationName": "Closet",
+    "borrowed": true,
+    "borrowerName": "Bob"
+}
+
+### Try to change owner of a tool
+PUT http://localhost:8080/handytools/1
+Content-Type: application/json
+
+{
+    "toolDetail": "Camera",
+    "ownerName": "SanTa",
+    "locationName": "Closet",
+    "borrowed": true,
+    "borrowerName": "Mother"
+}
+
+### Delete non-existent tool
+DELETE http://localhost:8080/handytools/999
